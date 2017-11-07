@@ -1,38 +1,50 @@
-# Tarjeta de crédito válida
+# PRODUCTO FINAL - TARJETA DE CREDITO (VALIDACIÓN)
 
-Crea una web que pida, por medio de un `prompt()`, el número de una tarjeta de
-crédito y confirme su validez según el [algoritmo de Luhn](https://es.wikipedia.org/wiki/Algoritmo_de_Luhn). 
-Lee este blog que explica [cómo funciona el algoritmo de Luhn](http://www.quobit.mx/asi-funciona-el-algoritmo-de-luhn-para-generar-numeros-de-tarjetas-de-credito.html).
-  
-## Entregables
+### PSEUDOCODIGO:
 
-Para cada producto debes entregar **un repositorio de GitHub** que
-contenga:
-1. Archivo `README.md` que explique el **pseudocódigo** de tu solución y su
-**diagrama de flujo**
-2. Archivo `app.js` con el **código** de tu solución
-3. Archivo `index.html` vinculado con tu `app.js`
+Creamos funcion isValidCard:
 
-## Tips
+~~~
+Funcion isValidCard(number){  
+    
+    Definir arr,reverse,i,j,sum,double
 
-A continuación un video de Michelle que te lleva a través del algoritmo de
-Luhn y te da tips para completar este proyecto:
+    arr = [](array vacio)  
 
-[![tips credit card](https://img.youtube.com/vi/f0zL6Ot9y_w/0.jpg)](https://www.youtube.com/watch?v=f0zL6Ot9y_w)
+    Para( i = 0 , i < longitud de la variable number, i = i + 1){
 
-## Consideraciones específicas
+        arr.push(number en el indice [ i ]) (push agrega elementos al array)
 
-1. Tu código debe estar compuesto por 1 función: `isValidCard`
-2. El usuario no debe poder ingresar un campo vacío
+    }
 
-## Criterios de evaluación
+    reverse = arr.reverse() (Cambia los elementos del array a alreves)
+    sum = 0 (inicia en 0)
+    double = 0 (inicia en 0)
 
-Se tomarán en cuenta las siguientes consideraciones a la hora de evaluar tu solución:
+    Para( j = 1 , j < (longitud de la variable reverse - 2), j = j + 2){
 
-1. Nombramiento de variables
-2. Indentación
-3. Validación de input: el usuario no debe poder ingresar un campo vacío o de tipo que no corresponda
-4. Estructura de tus archivos
-5. Archivo `README.md` correctamente redactado
-6. Uso de comentarios para hacer tu código más legible
-7. Que el programa cumpla con el propósito requerido
+        if(reverse en el indice[j] * 2 es mayor a 9)Entonces{
+
+            sum = sum + parseInt(reverse en el indice[j] * 2) + ((reverse en el indice[j] * 2) % 10)
+
+        }Sino{
+
+            double = double + reverse en el indice[j] * 2
+
+        }
+    }
+
+    retorne (double + sum) + reverse en el indice [ j-1 ]
+}
+~~~
+Ahora que ya tenemos la funcion creada pasaremos a preguntar al usuario, validar y llamar a la funcion:  
+~~~
+Si (isValidCard(prompt('Ingrese numero de Tarjeta')) % 10 es igual a 0) Entonces{
+
+    alerta('Tarjeta Valida')
+
+}Sino{
+
+    alerta ('Tarjeta Invalida')
+
+}
